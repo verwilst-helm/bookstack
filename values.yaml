@@ -12,6 +12,9 @@ image:
 app:
   # Laravel APP_KEY. Generate one with `php artisan key:generate` and put here if you want a static key.
   key:
+  # Port the bookstack app is running under.
+  # For the solidnerd/bookstack image, this will be port 80 for versions < 0.28.0, 8080 for later versions
+  port: 8080
 
 env: {}
 
