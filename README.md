@@ -12,11 +12,11 @@ $ helm install stable/bookstack
 
 This chart bootstraps a [Bookstack](https://hub.docker.com/r/solidnerd/bookstack/) deployment on a [Kubernetes](http://kubernetes.io) cluster using the [Helm](https://helm.sh) package manager.
 
-It also uses the [MariaDB chart](https://github.com/kubernetes/charts/tree/master/stable/mariadb) which satisfies the database requirements of the application.
+It also uses the [MariaDB chart](https://github.com/bitnami/charts/tree/master/bitnami/mariadb) which satisfies the database requirements of the application.
 
 ## Prerequisites
 
-- Kubernetes 1.9+ with Beta APIs enabled
+- Kubernetes 1.12+
 - PV provisioner support in the underlying infrastructure
 
 ## Installing the Chart
@@ -43,7 +43,7 @@ The command removes all the Kubernetes components associated with the chart and 
 
 ## Configuration
 
-The following table lists the configurable parameters of the Redmine chart and their default values.
+The following table lists the configurable parameters of the chart and their default values.
 
 |            Parameter              |              Description                 |                          Default                        | 
 | --------------------------------- | ---------------------------------------- | ------------------------------------------------------- |
@@ -58,14 +58,14 @@ The following table lists the configurable parameters of the Redmine chart and t
 | `externalDatabase.password`       | Password for the above username          | `nil`                                                   |
 | `externalDatabase.database`       | Name of the existing database            | `bookstack`                                             |
 | `mariadb.enabled`                 | Whether to use the MariaDB chart         | `true`                                                  |
-| `mariadb.db.name`                 | Database name to create                  | `bookstack`                                             |
-| `mariadb.db.user`                 | Database user to create                  | `bookstack`                                             |
-| `mariadb.db.password`             | Password for the database                | `nil`                                                   |
-| `mariadb.rootUser.password`        | MariaDB admin password                   | `nil`                                                   |
-| `mariadb.master.persistence.enabled`        | Enable MariaDB persistence using PVC     | `false`                                                  |
-| `mariadb.master.persistence.storageClass`   | PVC Storage Class for MariaDB volume     | `nil` (uses alpha storage class annotation)             |
-| `mariadb.master.persistence.accessMode`     | PVC Access Mode for MariaDB volume       | `ReadWriteOnce`                                         |
-| `mariadb.master.persistence.size`           | PVC Storage Request for MariaDB volume   | `8Gi`                                                   |
+| `mariadb.auth.database`           | Database name to create                  | `bookstack`                                             |
+| `mariadb.auth.username`           | Database user to create                  | `bookstack`                                             |
+| `mariadb.auth.password`           | Password for the database                | `nil`                                                   |
+| `mariadb.auth.rootPassword`       | MariaDB admin password                   | `nil`                                                   |
+| `mariadb.primary.persistence.enabled`        | Enable MariaDB persistence using PVC     | `false`                                                  |
+| `mariadb.primary.persistence.storageClass`   | PVC Storage Class for MariaDB volume     | `nil` (uses alpha storage class annotation)             |
+| `mariadb.primary.persistence.accessMode`     | PVC Access Mode for MariaDB volume       | `ReadWriteOnce`                                         |
+| `mariadb.primary.persistence.size`           | PVC Storage Request for MariaDB volume   | `8Gi`                                                   |
 | `service.type`                    | Desired service type                                | `ClusterIP`               |
 | `service.port`                    | Service exposed port                               | `80`                    |
 | `podSecurityPolicy.enabled`	    | Create & use Pod Security Policy resources  | `false`						      |

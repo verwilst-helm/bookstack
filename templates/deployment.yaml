@@ -26,7 +26,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: 80
+              containerPort: {{ .Values.app.port }}
               protocol: TCP
           livenessProbe:
             httpGet:
@@ -57,9 +57,9 @@ spec:
             - name: DB_HOST
               value: {{ template "bookstack.mariadb.fullname" . }}
             - name: DB_DATABASE
-              value: {{ .Values.mariadb.db.name | quote }}
+              value: {{ .Values.mariadb.auth.database | quote }}
             - name: DB_USERNAME
-              value: {{ .Values.mariadb.db.user | quote }}
+              value: {{ .Values.mariadb.auth.username | quote }}
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
