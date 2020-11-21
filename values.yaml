@@ -44,30 +44,28 @@ mariadb:
   ## Whether to deploy a mariadb server to satisfy the applications database requirements. To use an external database set this to false and configure the externalDatabase parameters
   enabled: true
 
-  ## Disable MariaDB replication
-  replication:
-    enabled: false
+  ## Set MariaDB architecture: standalone or replication
+  architecture: standalone
 
   ## Create a database and a database user
   ## ref: https://github.com/bitnami/bitnami-docker-mariadb/blob/master/README.md#creating-a-database-user-on-first-run
   ##
-  db:
-    name: bookstack
-    user: bookstack
+  auth:
+    database: bookstack
+    username: bookstack
     ## If the password is not specified, mariadb will generates a random password
     ##
     # password:
 
-  ## MariaDB admin password
-  ## ref: https://github.com/bitnami/bitnami-docker-mariadb/blob/master/README.md#setting-the-root-password-on-first-run
-  ##
-  # rootUser:
-  #   password:
+    ## MariaDB admin password
+    ## ref: https://github.com/bitnami/bitnami-docker-mariadb/blob/master/README.md#setting-the-root-password-on-first-run
+    ##
+    # rootPassword:
 
   ## Enable persistence using Persistent Volume Claims
   ## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
   ##
-  master:
+  primary:
     persistence:
       enabled: false
       ## mariadb data Persistent Volume Storage Class
